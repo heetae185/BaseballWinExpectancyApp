@@ -1,8 +1,10 @@
 import 'package:baseball_win_expectancy/providers/probs_sqlite.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:baseball_win_expectancy/providers/probs_sqlite.dart';
 import 'package:baseball_win_expectancy/models/probs.dart';
+import 'package:baseball_win_expectancy/widgets/widget_base.dart';
+import 'package:baseball_win_expectancy/models/base.dart';
+import 'package:provider/provider.dart';
 
 class BaseballScreen extends StatefulWidget {
   @override
@@ -43,6 +45,9 @@ class _BaseballScreenState extends State<BaseballScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final probs = Provider.of<Probs>(context);
+    final base = Provider.of<Base>(context);
+
     return Scaffold(
         appBar: AppBar(title: Text('Baseball Win Expectancy')),
         body: isLoading
@@ -65,7 +70,8 @@ class _BaseballScreenState extends State<BaseballScreen> {
                   Text(prob.games.toString()),
                   Text(prob.gamesWon.toString()),
                   Text(prob.winExpectancy.toString())
-                ])
+                ]),
+                BaseWidget()
               ]));
   }
 }

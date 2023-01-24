@@ -1,4 +1,6 @@
-class Probs {
+import 'package:flutter/cupertino.dart';
+
+class Probs extends ChangeNotifier {
   late int homeAway;
   late int inning;
   late int outCount;
@@ -41,5 +43,16 @@ class Probs {
     games = map?['games'];
     gamesWon = map?['gamesWon'];
     winExpectancy = map?['winExpectancy'];
+  }
+
+  void changeSituation(int newSituation) {
+    situation = newSituation;
+    notifyListeners();
+  }
+
+  void setResults(int newGames, int newGamesWon, double newWinExpectancy) {
+    games = newGames;
+    gamesWon = newGamesWon;
+    winExpectancy = newWinExpectancy;
   }
 }
