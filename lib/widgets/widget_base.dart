@@ -1,8 +1,10 @@
+import 'package:baseball_win_expectancy/providers/sqlite_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:baseball_win_expectancy/models/base.dart';
 import 'package:baseball_win_expectancy/models/probs.dart';
 import 'package:baseball_win_expectancy/providers/probs_sqlite.dart';
+import 'package:baseball_win_expectancy/providers/sqlite_helper.dart';
 
 class BaseWidget extends StatefulWidget {
   @override
@@ -13,7 +15,7 @@ class _BaseWidgetState extends State<BaseWidget> {
   bool firstBase = false;
   bool secondBase = false;
   bool thirdBase = false;
-  ProbsSqlite probsSqlite = ProbsSqlite();
+  SqliteHelper sqliteHelper = SqliteHelper();
 
   @override
   void initState() {
@@ -21,11 +23,18 @@ class _BaseWidgetState extends State<BaseWidget> {
     print('initState');
   }
 
+  Future getProb(
+      int homeAway, int inning, int outCount, int situation, int margin) async {
+    final probDb = await sqliteHelper.getProb(
+        homeAway, inning, outCount, situation, margin);
+    return probDb;
+  }
+
   @override
   Widget build(BuildContext context) {
     late int situationCode;
     final base = Provider.of<Base>(context);
-    final probs = Provider.of<Probs>(context);
+    final probsProvider = Provider.of<Probs>(context);
     late Probs newProb;
     return Column(
       children: [
@@ -35,12 +44,16 @@ class _BaseWidgetState extends State<BaseWidget> {
               firstBase = !firstBase;
             });
             base.switchFirstBase();
-            probs.changeSituation(base.toSituationCode());
-            newProb = await probsSqlite.getProb(probs.homeAway, probs.inning,
-                probs.outCount, probs.situation, probs.margin);
-            probs.setResults(
+            probsProvider.changeSituation(base.toSituationCode());
+            newProb = await getProb(
+                probsProvider.homeAway,
+                probsProvider.inning,
+                probsProvider.outCount,
+                probsProvider.situation,
+                probsProvider.margin);
+            probsProvider.setResults(
                 newProb.games, newProb.gamesWon, newProb.winExpectancy);
-            print(probs.winExpectancy);
+            print(probsProvider.winExpectancy);
             print(base.firstBase);
           },
           color: firstBase ? Colors.red : Colors.white,
@@ -51,12 +64,16 @@ class _BaseWidgetState extends State<BaseWidget> {
               secondBase = !secondBase;
             });
             base.switchSecondBase();
-            probs.changeSituation(base.toSituationCode());
-            newProb = await probsSqlite.getProb(probs.homeAway, probs.inning,
-                probs.outCount, probs.situation, probs.margin);
-            probs.setResults(
+            probsProvider.changeSituation(base.toSituationCode());
+            newProb = await getProb(
+                probsProvider.homeAway,
+                probsProvider.inning,
+                probsProvider.outCount,
+                probsProvider.situation,
+                probsProvider.margin);
+            probsProvider.setResults(
                 newProb.games, newProb.gamesWon, newProb.winExpectancy);
-            print(probs.winExpectancy);
+            print(probsProvider.winExpectancy);
           },
           color: secondBase ? Colors.blue : Colors.white,
         ),
@@ -66,12 +83,16 @@ class _BaseWidgetState extends State<BaseWidget> {
               thirdBase = !thirdBase;
             });
             base.switchThirdBase();
-            probs.changeSituation(base.toSituationCode());
-            newProb = await probsSqlite.getProb(probs.homeAway, probs.inning,
-                probs.outCount, probs.situation, probs.margin);
-            probs.setResults(
+            probsProvider.changeSituation(base.toSituationCode());
+            newProb = await getProb(
+                probsProvider.homeAway,
+                probsProvider.inning,
+                probsProvider.outCount,
+                probsProvider.situation,
+                probsProvider.margin);
+            probsProvider.setResults(
                 newProb.games, newProb.gamesWon, newProb.winExpectancy);
-            print(probs.winExpectancy);
+            print(probsProvider.winExpectancy);
           },
           color: thirdBase ? Colors.green : Colors.white,
         ),

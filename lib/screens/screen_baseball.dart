@@ -1,4 +1,5 @@
 import 'package:baseball_win_expectancy/providers/probs_sqlite.dart';
+import 'package:baseball_win_expectancy/providers/sqlite_helper.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:baseball_win_expectancy/models/probs.dart';
@@ -12,7 +13,7 @@ class BaseballScreen extends StatefulWidget {
 }
 
 class _BaseballScreenState extends State<BaseballScreen> {
-  ProbsSqlite probsSqlite = ProbsSqlite();
+  late SqliteHelper sqliteHelper;
   bool isLoading = true;
   String tempString = '';
   List<Probs> probs = [];
@@ -24,16 +25,23 @@ class _BaseballScreenState extends State<BaseballScreen> {
   bool secondBase = false;
   bool thirdBase = false;
 
+  Future getProb(
+      int homeAway, int inning, int outCount, int situation, int margin) async {
+    final probDb = await sqliteHelper.getProb(
+        homeAway, inning, outCount, situation, margin);
+    return probDb;
+  }
+
   Future initDb() async {
-    await probsSqlite.initDb().then((value) async {
-      prob = await probsSqlite.getProb(1, 1, 0, 1, 0);
-    });
+    var db = await ProbsSqlite.instance.database;
+    prob = await getProb(1, 1, 0, 1, 0);
   }
 
   @override
   void initState() {
     super.initState();
     print('initState');
+    sqliteHelper = SqliteHelper();
     Timer(Duration(seconds: 1), () {
       initDb().then((_) {
         setState(() {
@@ -45,7 +53,7 @@ class _BaseballScreenState extends State<BaseballScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final probs = Provider.of<Probs>(context);
+    final probsProvider = Provider.of<Probs>(context);
     final base = Provider.of<Base>(context);
 
     return Scaffold(
@@ -55,21 +63,12 @@ class _BaseballScreenState extends State<BaseballScreen> {
                 child: CircularProgressIndicator(),
               )
             : Column(children: [
-                TextButton(
-                  child: Text('실험'),
-                  onPressed: () async {
-                    Probs newProb = await probsSqlite.getProb(0, 1, 0, 1, 0);
-                    setState(() {
-                      prob = newProb;
-                    });
-                  },
-                ),
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text(prob.homeAway.toString()),
-                  Text(prob.inning.toString()),
-                  Text(prob.games.toString()),
-                  Text(prob.gamesWon.toString()),
-                  Text(prob.winExpectancy.toString())
+                  Text(probsProvider.homeAway.toString()),
+                  Text(probsProvider.inning.toString()),
+                  Text(probsProvider.games.toString()),
+                  Text(probsProvider.gamesWon.toString()),
+                  Text(probsProvider.winExpectancy.toString())
                 ]),
                 BaseWidget()
               ]));
