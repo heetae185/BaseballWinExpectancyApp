@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:baseball_win_expectancy/models/probs.dart';
 import 'package:provider/provider.dart';
 
-class OutcountWidget extends StatefulWidget {
+class OutCountWidget extends StatefulWidget {
   @override
   _OutcountWidgetState createState() => _OutcountWidgetState();
 }
 
-class _OutcountWidgetState extends State<OutcountWidget> {
+class _OutcountWidgetState extends State<OutCountWidget> {
   int outCount = 0;
   SqliteHelper sqliteHelper = SqliteHelper();
 
