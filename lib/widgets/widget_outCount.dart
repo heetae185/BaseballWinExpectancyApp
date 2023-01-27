@@ -47,7 +47,7 @@ class _OutcountWidgetState extends State<OutCountWidget> {
       child: Container(
         width: 100,
         padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-        color: Colors.green,
+        color: Colors.red[50],
         child: Row(children: [
           Container(
             height: 20,
