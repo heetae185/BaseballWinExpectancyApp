@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:baseball_win_expectancy/models/base.dart';
 import 'package:baseball_win_expectancy/models/probs.dart';
 import 'package:baseball_win_expectancy/providers/probs_sqlite.dart';
-import 'package:baseball_win_expectancy/providers/sqlite_helper.dart';
 
 class BaseWidget extends StatefulWidget {
   @override
@@ -32,7 +31,6 @@ class _BaseWidgetState extends State<BaseWidget> {
 
   @override
   Widget build(BuildContext context) {
-    late int situationCode;
     final base = Provider.of<Base>(context);
     final probsProvider = Provider.of<Probs>(context);
     late Probs newProb;
