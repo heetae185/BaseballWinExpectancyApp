@@ -45,6 +45,11 @@ class Probs extends ChangeNotifier {
     winExpectancy = map?['winExpectancy'];
   }
 
+  void changeHomeAway(int newHomeAway) {
+    homeAway = newHomeAway;
+    notifyListeners();
+  }
+
   void changeSituation(int newSituation) {
     situation = newSituation;
     notifyListeners();
