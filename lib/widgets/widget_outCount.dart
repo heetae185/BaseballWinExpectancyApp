@@ -18,10 +18,10 @@ class _OutcountWidgetState extends State<OutCountWidget> {
     print('initState');
   }
 
-  Future getProb(
-      int homeAway, int inning, int outCount, int situation, int margin) async {
+  Future getProb(int homeAway, int topBottom, int inning, int outCount,
+      int situation, int margin) async {
     final probDb = await sqliteHelper.getProb(
-        homeAway, inning, outCount, situation, margin);
+        homeAway, topBottom, inning, outCount, situation, margin);
     return probDb;
   }
 
@@ -37,6 +37,7 @@ class _OutcountWidgetState extends State<OutCountWidget> {
         probsProvider.changeOutCount(outCount);
         newProb = await getProb(
             probsProvider.homeAway,
+            probsProvider.topBottom,
             probsProvider.inning,
             probsProvider.outCount,
             probsProvider.situation,

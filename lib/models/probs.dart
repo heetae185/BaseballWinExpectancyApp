@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class Probs extends ChangeNotifier {
   late int homeAway;
+  late int topBottom;
   late int inning;
   late int outCount;
   late int situation;
@@ -12,6 +13,7 @@ class Probs extends ChangeNotifier {
 
   Probs({
     required this.homeAway,
+    required this.topBottom,
     required this.inning,
     required this.outCount,
     required this.situation,
@@ -24,6 +26,7 @@ class Probs extends ChangeNotifier {
   Map<String, dynamic> toMap() {
     return {
       'homeAway': homeAway,
+      'topBottom': topBottom,
       'inning': inning,
       'outCount': outCount,
       'situation': situation,
@@ -36,6 +39,7 @@ class Probs extends ChangeNotifier {
 
   Probs.fromMap(Map<dynamic, dynamic>? map) {
     homeAway = map?['homeAway'];
+    topBottom = map?['topBottom'];
     inning = map?['inning'];
     outCount = map?['outCount'];
     situation = map?['situation'];

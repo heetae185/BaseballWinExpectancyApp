@@ -22,10 +22,10 @@ class _BaseWidgetState extends State<BaseWidget> {
     print('initState');
   }
 
-  Future getProb(
-      int homeAway, int inning, int outCount, int situation, int margin) async {
+  Future getProb(int homeAway, int topBottom, int inning, int outCount,
+      int situation, int margin) async {
     final probDb = await sqliteHelper.getProb(
-        homeAway, inning, outCount, situation, margin);
+        homeAway, topBottom, inning, outCount, situation, margin);
     return probDb;
   }
 
@@ -45,6 +45,7 @@ class _BaseWidgetState extends State<BaseWidget> {
             probsProvider.changeSituation(base.toSituationCode());
             newProb = await getProb(
                 probsProvider.homeAway,
+                probsProvider.topBottom,
                 probsProvider.inning,
                 probsProvider.outCount,
                 probsProvider.situation,
@@ -65,6 +66,7 @@ class _BaseWidgetState extends State<BaseWidget> {
             probsProvider.changeSituation(base.toSituationCode());
             newProb = await getProb(
                 probsProvider.homeAway,
+                probsProvider.topBottom,
                 probsProvider.inning,
                 probsProvider.outCount,
                 probsProvider.situation,
@@ -84,6 +86,7 @@ class _BaseWidgetState extends State<BaseWidget> {
             probsProvider.changeSituation(base.toSituationCode());
             newProb = await getProb(
                 probsProvider.homeAway,
+                probsProvider.topBottom,
                 probsProvider.inning,
                 probsProvider.outCount,
                 probsProvider.situation,

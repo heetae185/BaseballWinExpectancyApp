@@ -21,22 +21,23 @@ class _BaseballScreenState extends State<BaseballScreen> {
   List<Probs> probs = [];
   late Probs prob;
   late int homeAway;
+  late int topBottom;
   late int inning;
   late int outCount;
   bool firstBase = false;
   bool secondBase = false;
   bool thirdBase = false;
 
-  Future getProb(
-      int homeAway, int inning, int outCount, int situation, int margin) async {
+  Future getProb(int homeAway, int topBottom, int inning, int outCount,
+      int situation, int margin) async {
     final probDb = await sqliteHelper.getProb(
-        homeAway, inning, outCount, situation, margin);
+        homeAway, topBottom, inning, outCount, situation, margin);
     return probDb;
   }
 
   Future initDb() async {
     var db = await ProbsSqlite.instance.database;
-    prob = await getProb(1, 1, 0, 1, 0);
+    prob = await getProb(0, 0, 1, 0, 1, 0);
   }
 
   @override

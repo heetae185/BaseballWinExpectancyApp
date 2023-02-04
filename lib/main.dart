@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
                 Base(firstBase: false, secondBase: false, thirdBase: false)),
         ChangeNotifierProvider(
             create: (_) => Probs(
-                homeAway: 1,
+                homeAway: 0,
+                topBottom: 0,
                 inning: 1,
                 outCount: 0,
                 situation: 1,
