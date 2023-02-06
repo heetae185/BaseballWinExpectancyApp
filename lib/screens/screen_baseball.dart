@@ -67,6 +67,10 @@ class _BaseballScreenState extends State<BaseballScreen> {
                 child: CircularProgressIndicator(),
               )
             : Column(children: [
+                HomeAwayWidget(),
+                InningWidget(),
+                BaseWidget(),
+                OutCountWidget(),
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text(probsProvider.homeAway.toString()),
                   Text(probsProvider.inning.toString()),
@@ -74,10 +78,6 @@ class _BaseballScreenState extends State<BaseballScreen> {
                   Text(probsProvider.gamesWon.toString()),
                   Text(probsProvider.winExpectancy.toString())
                 ]),
-                HomeAwayWidget(),
-                InningWidget(),
-                BaseWidget(),
-                OutCountWidget()
               ]));
   }
 }
