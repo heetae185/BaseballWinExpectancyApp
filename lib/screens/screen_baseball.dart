@@ -1,6 +1,7 @@
 import 'package:baseball_win_expectancy/providers/probs_sqlite.dart';
 import 'package:baseball_win_expectancy/providers/sqlite_helper.dart';
 import 'package:baseball_win_expectancy/widgets/widget_homeAway.dart';
+import 'package:baseball_win_expectancy/widgets/widget_inning.dart';
 import 'package:baseball_win_expectancy/widgets/widget_outCount.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -74,6 +75,7 @@ class _BaseballScreenState extends State<BaseballScreen> {
                   Text(probsProvider.winExpectancy.toString())
                 ]),
                 HomeAwayWidget(),
+                InningWidget(),
                 BaseWidget(),
                 OutCountWidget()
               ]));

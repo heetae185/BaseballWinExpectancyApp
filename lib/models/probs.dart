@@ -54,6 +54,17 @@ class Probs extends ChangeNotifier {
     notifyListeners();
   }
 
+  void changeInningTopBottom(int newInning) {
+    if (newInning > 10) {
+      newInning -= 10;
+      topBottom = 1;
+    } else {
+      topBottom = 0;
+    }
+    inning = newInning;
+    notifyListeners();
+  }
+
   void changeSituation(int newSituation) {
     situation = newSituation;
     notifyListeners();
