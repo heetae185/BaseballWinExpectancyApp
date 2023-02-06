@@ -33,7 +33,7 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
     final probsProvider = Provider.of<Probs>(context);
     late Probs newProb;
     return Container(
-      color: Colors.grey[200],
+      color: Colors.white,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         const Text(
           '우리팀은',
@@ -41,26 +41,23 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
           style: TextStyle(fontSize: 16),
         ),
         Container(
-          width: MediaQuery.of(context).size.width * 0.8,
+          width: MediaQuery.of(context).size.width,
           child: Center(
             child: ToggleButtons(
-                selectedColor: Colors.grey[100],
+                selectedColor: Colors.white,
+                fillColor: Colors.green,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(50, 5, 50, 5),
-                    child: Text(
-                      '홈팀',
-                      style: TextStyle(fontSize: 16),
-                    ),
+                  Text(
+                    '홈팀',
+                    style: TextStyle(fontSize: 16),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(50, 5, 50, 5),
-                    child: Text(
-                      '원정팀',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  )
+                  Text(
+                    '원정팀',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ],
+                constraints: BoxConstraints(
+                    minWidth: (MediaQuery.of(context).size.width - 30) / 2),
                 onPressed: (int index) async {
                   setState(() {
                     for (int i = 0; i < isSelected.length; i++) {
