@@ -75,6 +75,11 @@ class Probs extends ChangeNotifier {
     notifyListeners();
   }
 
+  void changeMargin(int newMargin) {
+    margin = newMargin;
+    notifyListeners();
+  }
+
   void setResults(int newGames, int newGamesWon, double newWinExpectancy) {
     games = newGames;
     gamesWon = newGamesWon;

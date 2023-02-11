@@ -55,7 +55,7 @@ class _BaseWidgetState extends State<BaseWidget> {
             print(probsProvider.winExpectancy);
             print(base.firstBase);
           },
-          color: firstBase ? Colors.red : Colors.white,
+          color: firstBase ? Colors.green : Colors.white,
         ),
         MaterialButton(
           onPressed: () async {
@@ -75,7 +75,7 @@ class _BaseWidgetState extends State<BaseWidget> {
                 newProb.games, newProb.gamesWon, newProb.winExpectancy);
             print(probsProvider.winExpectancy);
           },
-          color: secondBase ? Colors.blue : Colors.white,
+          color: secondBase ? Colors.green : Colors.white,
         ),
         MaterialButton(
           onPressed: () async {

@@ -41,6 +41,16 @@ class _MarginWidgetState extends State<MarginWidget> {
                   setState(() {
                     margin -= 1;
                   });
+                  probsProvider.changeMargin(margin);
+                  newProb = await getProb(
+                      probsProvider.homeAway,
+                      probsProvider.topBottom,
+                      probsProvider.inning,
+                      probsProvider.outCount,
+                      probsProvider.situation,
+                      probsProvider.margin);
+                  probsProvider.setResults(
+                      newProb.games, newProb.gamesWon, newProb.winExpectancy);
                 },
                 child: Text('-')),
             Text(margin.toString()),
@@ -49,6 +59,16 @@ class _MarginWidgetState extends State<MarginWidget> {
                   setState(() {
                     margin += 1;
                   });
+                  probsProvider.changeMargin(margin);
+                  newProb = await getProb(
+                      probsProvider.homeAway,
+                      probsProvider.topBottom,
+                      probsProvider.inning,
+                      probsProvider.outCount,
+                      probsProvider.situation,
+                      probsProvider.margin);
+                  probsProvider.setResults(
+                      newProb.games, newProb.gamesWon, newProb.winExpectancy);
                 },
                 child: Text('+'))
           ]),
