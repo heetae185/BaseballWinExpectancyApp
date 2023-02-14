@@ -46,13 +46,19 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
                 selectedColor: Colors.white,
                 fillColor: Colors.green,
                 children: [
-                  Text(
+                  const Text(
                     '홈팀',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'SpoqaHanSansNeo',
+                        fontWeight: FontWeight.w400),
                   ),
-                  Text(
+                  const Text(
                     '원정팀',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'SpoqaHanSansNeo',
+                        fontWeight: FontWeight.w400),
                   ),
                 ],
                 constraints: BoxConstraints(

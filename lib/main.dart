@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           title: 'Baseball Win Expectancy',
-          theme: ThemeData(primaryColor: Colors.green),
+          theme: ThemeData(
+              primaryColor: Colors.green, fontFamily: 'SpoqaHanSansNeo'),
           initialRoute: '/',
           routes: {'/': (context) => BaseballScreen()},
         );
