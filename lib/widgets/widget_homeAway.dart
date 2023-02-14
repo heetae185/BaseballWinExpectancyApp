@@ -41,7 +41,6 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
           style: TextStyle(fontSize: 16),
         ),
         Container(
-          width: MediaQuery.of(context).size.width,
           child: Center(
             child: ToggleButtons(
                 selectedColor: Colors.white,

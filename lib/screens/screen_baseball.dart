@@ -63,12 +63,23 @@ class _BaseballScreenState extends State<BaseballScreen> {
 
     return Scaffold(
         appBar: AppBar(title: Text('Baseball Win Expectancy')),
+        backgroundColor: const Color(0xFFF5F5F5),
         body: isLoading
             ? Center(
                 child: CircularProgressIndicator(),
               )
             : Column(children: [
-                HomeAwayWidget(),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Container(
+                    child: HomeAwayWidget(),
+                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    height: MediaQuery.of(context).size.height * 0.1,
+                  ),
+                ),
                 InningWidget(),
                 BaseWidget(),
                 OutCountWidget(),
