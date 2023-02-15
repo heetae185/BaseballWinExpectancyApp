@@ -38,7 +38,7 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
         const Text(
           '우리팀은',
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 16),
+          style: TextStyle(fontSize: 20),
         ),
         Container(
           child: Center(

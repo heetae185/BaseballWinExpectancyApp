@@ -73,7 +73,7 @@ class _BaseballScreenState extends State<BaseballScreen> {
                   borderRadius: BorderRadius.circular(50),
                   child: Container(
                     child: HomeAwayWidget(),
-                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                     decoration: const BoxDecoration(
                       color: Colors.white,
                     ),
