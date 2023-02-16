@@ -80,11 +80,11 @@ flutter:
   fonts:
     - family: SpoqaHanSansNeo
       fonts:
-        - asset: assets/fonts/SpoqaHansNeo-Regular.otf
+        - asset: assets/fonts/SpoqaHanSansNeo-Regular.otf
           weight: 400
-        - asset: assets/fonts/SpoqaHansNeo-Medium.otf
+        - asset: assets/fonts/SpoqaHanSansNeo-Medium.otf
           weight: 500
-        - asset: assets/fonts/SpoqaHansNeo-Bold.otf
+        - asset: assets/fonts/SpoqaHanSansNeo-Bold.otf
           weight: 700
   #
   # For details regarding fonts from package dependencies,

@@ -61,6 +61,9 @@ class _BaseballScreenState extends State<BaseballScreen> {
     final probsProvider = Provider.of<Probs>(context);
     final base = Provider.of<Base>(context);
 
+    double widthMargin = MediaQuery.of(context).size.width * 0.02;
+    double heightMargin = MediaQuery.of(context).size.height * 0.02;
+
     return Scaffold(
         appBar: AppBar(title: Text('Baseball Win Expectancy')),
         backgroundColor: const Color(0xFFF5F5F5),
@@ -69,16 +72,22 @@ class _BaseballScreenState extends State<BaseballScreen> {
                 child: CircularProgressIndicator(),
               )
             : Column(children: [
+<<<<<<< HEAD
                 ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: Container(
                     child: HomeAwayWidget(),
                     margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                     decoration: const BoxDecoration(
+=======
+                Container(
+                  child: HomeAwayWidget(),
+                  margin: EdgeInsets.fromLTRB(0, heightMargin, 0, heightMargin),
+                  decoration: BoxDecoration(
+>>>>>>> customtogglebutton
                       color: Colors.white,
-                    ),
-                    height: MediaQuery.of(context).size.height * 0.1,
-                  ),
+                      borderRadius: BorderRadius.circular(20)),
+                  height: MediaQuery.of(context).size.height * 0.1,
                 ),
                 InningWidget(),
                 BaseWidget(),
