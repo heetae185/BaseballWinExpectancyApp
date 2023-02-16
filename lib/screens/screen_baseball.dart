@@ -72,19 +72,10 @@ class _BaseballScreenState extends State<BaseballScreen> {
                 child: CircularProgressIndicator(),
               )
             : Column(children: [
-<<<<<<< HEAD
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Container(
-                    child: HomeAwayWidget(),
-                    margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    decoration: const BoxDecoration(
-=======
                 Container(
                   child: HomeAwayWidget(),
                   margin: EdgeInsets.fromLTRB(0, heightMargin, 0, heightMargin),
                   decoration: BoxDecoration(
->>>>>>> customtogglebutton
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   height: MediaQuery.of(context).size.height * 0.1,

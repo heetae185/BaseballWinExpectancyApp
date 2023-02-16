@@ -58,14 +58,10 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
         const Text(
           '우리팀은',
           textAlign: TextAlign.center,
-<<<<<<< HEAD
-          style: TextStyle(fontSize: 20),
-=======
           style: TextStyle(fontSize: 18),
         ),
         SizedBox(
           height: toggleButtonSizedBoxHeight,
->>>>>>> customtogglebutton
         ),
         Container(
             width: toggleButtonWidth,
