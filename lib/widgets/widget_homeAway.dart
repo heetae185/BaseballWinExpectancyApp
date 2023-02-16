@@ -83,12 +83,23 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                     )),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     setState(() {
                       xAlign = homeAlign;
                       homeColor = selectedColor;
                       awayColor = normalColor;
+                      homeAway = 0;
                     });
+                    probsProvider.changeHomeAway(homeAway);
+                    newProb = await getProb(
+                        probsProvider.homeAway,
+                        probsProvider.topBottom,
+                        probsProvider.inning,
+                        probsProvider.outCount,
+                        probsProvider.situation,
+                        probsProvider.margin);
+                    probsProvider.setResults(
+                        newProb.games, newProb.gamesWon, newProb.winExpectancy);
                   },
                   child: Align(
                     alignment: Alignment(-1, 0),
@@ -107,12 +118,23 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     setState(() {
                       xAlign = awayAlign;
                       homeColor = selectedColor;
                       awayColor = normalColor;
+                      homeAway = 1;
                     });
+                    probsProvider.changeHomeAway(homeAway);
+                    newProb = await getProb(
+                        probsProvider.homeAway,
+                        probsProvider.topBottom,
+                        probsProvider.inning,
+                        probsProvider.outCount,
+                        probsProvider.situation,
+                        probsProvider.margin);
+                    probsProvider.setResults(
+                        newProb.games, newProb.gamesWon, newProb.winExpectancy);
                   },
                   child: Align(
                     alignment: Alignment(1, 0),
