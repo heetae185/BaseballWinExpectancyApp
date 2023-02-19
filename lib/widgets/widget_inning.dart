@@ -34,7 +34,6 @@ class _InningWidgetState extends State<InningWidget> {
 
     double inningPickerMarginWidth = MediaQuery.of(context).size.width * 0.05;
     double inningPickerWidth = MediaQuery.of(context).size.width * 0.8;
-    List<int> inning = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     return Container(
       color: Colors.white,
