@@ -7,7 +7,7 @@ import 'package:baseball_win_expectancy/widgets/widget_outCount.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:baseball_win_expectancy/models/probs.dart';
-import 'package:baseball_win_expectancy/widgets/widget_base.dart';
+import 'package:baseball_win_expectancy/widgets/widget_base/widget_base.dart';
 import 'package:baseball_win_expectancy/models/base.dart';
 import 'package:provider/provider.dart';
 
