@@ -2,6 +2,7 @@ import 'package:baseball_win_expectancy/providers/sqlite_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:baseball_win_expectancy/models/probs.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 class InningWidget extends StatefulWidget {
   @override
@@ -9,7 +10,8 @@ class InningWidget extends StatefulWidget {
 }
 
 class _InningWidgetState extends State<InningWidget> {
-  int _value = 1;
+  int _currentInningValue = 1;
+  int _topBottomValue = 0;
   SqliteHelper sqliteHelper = SqliteHelper();
 
   @override
@@ -29,171 +31,137 @@ class _InningWidgetState extends State<InningWidget> {
   Widget build(BuildContext context) {
     final probsProvider = Provider.of<Probs>(context);
     late Probs newProb;
+
+    double inningPickerMarginWidth = MediaQuery.of(context).size.width * 0.05;
+    double inningPickerWidth = MediaQuery.of(context).size.width * 0.8;
     List<int> inning = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
     return Container(
-        child: Column(
-      children: [
-        Row(
-          children: [
-            Padding(padding: EdgeInsets.only(left: 30)),
-            for (var i in inning)
-              Container(
-                width: 30,
-                height: 20,
-                child: Text(
-                  i.toString(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-            Container(
-              width: 30,
-              height: 20,
-              child: Text(
-                'OT',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
-            )
-          ],
+      color: Colors.white,
+      margin: EdgeInsets.fromLTRB(
+          inningPickerMarginWidth, 0, inningPickerMarginWidth, 0),
+      width: inningPickerWidth,
+      child: Row(children: [
+        SizedBox(
+          width: inningPickerWidth * 0.05,
         ),
-        Row(
-          children: [
-            Container(
-              width: 30,
-              height: 30,
-              child: Text(
-                '초',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-            for (var i in inning)
-              InningRadioButtons<int>(
-                  value: i,
-                  groupValue: _value,
-                  onChanged: (value) async {
-                    setState(() {
-                      _value = value!;
-                      probsProvider.changeInningTopBottom(value);
-                    });
-                    newProb = await getProb(
-                        probsProvider.homeAway,
-                        probsProvider.topBottom,
-                        probsProvider.inning,
-                        probsProvider.outCount,
-                        probsProvider.situation,
-                        probsProvider.margin);
-                    probsProvider.setResults(
-                        newProb.games, newProb.gamesWon, newProb.winExpectancy);
-                  }),
-            InningRadioButtons<int>(
-                value: 10,
-                groupValue: _value,
-                onChanged: (value) async {
-                  setState(() {
-                    _value = value!;
-                    probsProvider.changeInningTopBottom(value);
-                  });
-                  newProb = await getProb(
-                      probsProvider.homeAway,
-                      probsProvider.topBottom,
-                      probsProvider.inning,
-                      probsProvider.outCount,
-                      probsProvider.situation,
-                      probsProvider.margin);
-                  probsProvider.setResults(
-                      newProb.games, newProb.gamesWon, newProb.winExpectancy);
-                }),
-          ],
+        Container(
+          alignment: Alignment.center,
+          width: inningPickerWidth * 0.2,
+          child: Text(
+            '지금은',
+            style: TextStyle(fontSize: 18),
+          ),
         ),
-        Row(
-          children: [
-            Container(
-              width: 30,
-              height: 30,
-              child: Text(
-                '말',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-            for (var i in inning)
-              InningRadioButtons<int>(
-                  value: i + 10,
-                  groupValue: _value,
-                  onChanged: (value) async {
-                    setState(() {
-                      _value = value!;
-                      probsProvider.changeInningTopBottom(value);
-                    });
-                    newProb = await getProb(
-                        probsProvider.homeAway,
-                        probsProvider.topBottom,
-                        probsProvider.inning,
-                        probsProvider.outCount,
-                        probsProvider.situation,
-                        probsProvider.margin);
-                    probsProvider.setResults(
-                        newProb.games, newProb.gamesWon, newProb.winExpectancy);
-                  }),
-            InningRadioButtons<int>(
-                value: 20,
-                groupValue: _value,
-                onChanged: (value) async {
-                  setState(() {
-                    _value = value!;
-                    probsProvider.changeInningTopBottom(value);
-                  });
-                  newProb = await getProb(
-                      probsProvider.homeAway,
-                      probsProvider.topBottom,
-                      probsProvider.inning,
-                      probsProvider.outCount,
-                      probsProvider.situation,
-                      probsProvider.margin);
-                  probsProvider.setResults(
-                      newProb.games, newProb.gamesWon, newProb.winExpectancy);
-                }),
-          ],
+        SizedBox(
+          width: inningPickerWidth * 0.2,
+          child: NumberPicker(
+            minValue: 1,
+            maxValue: 10,
+            value: _currentInningValue,
+            itemHeight: 25,
+            itemWidth: 50,
+            selectedTextStyle: TextStyle(
+                fontSize: 18,
+                fontFamily: 'SpoqaHanSansNeo',
+                fontWeight: FontWeight.w600,
+                color: Colors.black),
+            textStyle: TextStyle(
+                fontSize: 12,
+                fontFamily: 'SpoqaHanSansNeo',
+                fontWeight: FontWeight.w400,
+                color: Colors.grey),
+            infiniteLoop: true,
+            onChanged: (value) async {
+              setState(() {
+                _currentInningValue = value;
+                probsProvider.changeInning(_currentInningValue);
+              });
+              newProb = await getProb(
+                  probsProvider.homeAway,
+                  probsProvider.topBottom,
+                  probsProvider.inning,
+                  probsProvider.outCount,
+                  probsProvider.situation,
+                  probsProvider.margin);
+              probsProvider.setResults(
+                  newProb.games, newProb.gamesWon, newProb.winExpectancy);
+            },
+            textMapper: (numberText) {
+              if (numberText == '10') {
+                return '연장';
+              } else {
+                return numberText;
+              }
+            },
+          ),
+        ),
+        Container(
+          alignment: Alignment.center,
+          width: inningPickerWidth * 0.1,
+          child: Text(
+            '회',
+            style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'SpoqaHanSansNeo',
+                fontWeight: FontWeight.w600),
+          ),
+        ),
+        SizedBox(
+          width: inningPickerWidth * 0.2,
+          child: NumberPicker(
+            minValue: 0,
+            maxValue: 1,
+            value: _topBottomValue,
+            itemHeight: 25,
+            itemWidth: 50,
+            selectedTextStyle: TextStyle(
+                fontSize: 18,
+                fontFamily: 'SpoqaHanSansNeo',
+                fontWeight: FontWeight.w600,
+                color: Colors.black),
+            textStyle: TextStyle(
+                fontSize: 14,
+                fontFamily: 'SpoqaHanSansNeo',
+                fontWeight: FontWeight.w400,
+                color: Colors.grey),
+            infiniteLoop: false,
+            onChanged: (value) async {
+              setState(() {
+                _topBottomValue = value;
+                probsProvider.changeTopBottom(_topBottomValue);
+              });
+              newProb = await getProb(
+                  probsProvider.homeAway,
+                  probsProvider.topBottom,
+                  probsProvider.inning,
+                  probsProvider.outCount,
+                  probsProvider.situation,
+                  probsProvider.margin);
+              probsProvider.setResults(
+                  newProb.games, newProb.gamesWon, newProb.winExpectancy);
+            },
+            textMapper: ((numberText) {
+              if (numberText == '0') {
+                return '초';
+              } else {
+                return '말';
+              }
+            }),
+          ),
+        ),
+        Container(
+          alignment: Alignment.center,
+          width: inningPickerWidth * 0.2,
+          child: Text(
+            '입니다',
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+        SizedBox(
+          width: inningPickerWidth * 0.05,
         )
-      ],
-    ));
-  }
-}
-
-class InningRadioButtons<T> extends StatelessWidget {
-  final T value;
-  final T groupValue;
-  final ValueChanged<T?> onChanged;
-
-  const InningRadioButtons(
-      {required this.value, required this.groupValue, required this.onChanged});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => onChanged(value),
-      child: Container(
-        height: 30,
-        width: 30,
-        padding: EdgeInsets.all(5),
-        child: _customRadioButton,
-      ),
-    );
-  }
-
-  Widget get _customRadioButton {
-    final isSelected = value == groupValue;
-    return Container(
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-          color: isSelected ? Colors.green : null,
-          borderRadius: BorderRadius.circular(3),
-          border: Border.all(
-            color: isSelected ? Colors.green : Colors.grey[300]!,
-            width: 2,
-          )),
+      ]),
     );
   }
 }

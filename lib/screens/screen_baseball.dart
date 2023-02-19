@@ -62,7 +62,7 @@ class _BaseballScreenState extends State<BaseballScreen> {
     final base = Provider.of<Base>(context);
 
     double widthMargin = MediaQuery.of(context).size.width * 0.02;
-    double heightMargin = MediaQuery.of(context).size.height * 0.02;
+    double heightMargin = MediaQuery.of(context).size.height * 0.01;
 
     return Scaffold(
         appBar: AppBar(title: Text('Baseball Win Expectancy')),
@@ -73,19 +73,26 @@ class _BaseballScreenState extends State<BaseballScreen> {
               )
             : Column(children: [
                 Container(
+                  margin:
+                      EdgeInsets.fromLTRB(0, heightMargin * 2, 0, heightMargin),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20)),
+                  height: MediaQuery.of(context).size.height * 0.1,
                   child: HomeAwayWidget(),
+                ),
+                Container(
                   margin: EdgeInsets.fromLTRB(0, heightMargin, 0, heightMargin),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   height: MediaQuery.of(context).size.height * 0.1,
+                  child: InningWidget(),
                 ),
-                InningWidget(),
                 BaseWidget(),
                 OutCountWidget(),
                 MarginWidget(),
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text(probsProvider.homeAway.toString()),
                   Text(probsProvider.inning.toString()),
                   Text(probsProvider.games.toString()),
                   Text(probsProvider.gamesWon.toString()),
