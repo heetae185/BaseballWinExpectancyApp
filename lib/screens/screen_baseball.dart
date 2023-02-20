@@ -7,7 +7,7 @@ import 'package:baseball_win_expectancy/widgets/widget_outCount.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:baseball_win_expectancy/models/probs.dart';
-import 'package:baseball_win_expectancy/widgets/widget_base/widget_base.dart';
+import 'package:baseball_win_expectancy/widgets/widget_base.dart';
 import 'package:baseball_win_expectancy/models/base.dart';
 import 'package:provider/provider.dart';
 
@@ -77,7 +77,7 @@ class _BaseballScreenState extends State<BaseballScreen> {
                       EdgeInsets.fromLTRB(0, heightMargin * 2, 0, heightMargin),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
+                      borderRadius: BorderRadius.circular(15)),
                   height: MediaQuery.of(context).size.height * 0.1,
                   child: HomeAwayWidget(),
                 ),
@@ -85,11 +85,16 @@ class _BaseballScreenState extends State<BaseballScreen> {
                   margin: EdgeInsets.fromLTRB(0, heightMargin, 0, heightMargin),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
+                      borderRadius: BorderRadius.circular(15)),
                   height: MediaQuery.of(context).size.height * 0.1,
                   child: InningWidget(),
                 ),
-                BaseWidget(),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, heightMargin, 0, heightMargin),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  child: BaseWidget(),
+                ),
                 OutCountWidget(),
                 MarginWidget(),
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
