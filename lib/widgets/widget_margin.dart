@@ -56,7 +56,7 @@ class _MarginWidgetState extends State<MarginWidget> {
             alignment: Alignment.center,
             width: marginButtonWidth,
             decoration: BoxDecoration(
-              border: Border.all(color: Color(0xFF424242)),
+              border: Border.all(color: Color(0xFFB4B4B4)),
               borderRadius: BorderRadius.circular(5),
             ),
             child: Row(children: [
