@@ -61,7 +61,7 @@ class _BaseballScreenState extends State<BaseballScreen> {
     final probsProvider = Provider.of<Probs>(context);
     final base = Provider.of<Base>(context);
 
-    double widthMargin = MediaQuery.of(context).size.width * 0.02;
+    double widthMargin = MediaQuery.of(context).size.width * 0.05;
     double heightMargin = MediaQuery.of(context).size.height * 0.01;
 
     return Scaffold(
@@ -76,8 +76,9 @@ class _BaseballScreenState extends State<BaseballScreen> {
                   margin:
                       EdgeInsets.fromLTRB(0, heightMargin * 2, 0, heightMargin),
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
                   height: MediaQuery.of(context).size.height * 0.1,
                   child: HomeAwayWidget(),
                 ),
@@ -95,8 +96,32 @@ class _BaseballScreenState extends State<BaseballScreen> {
                       BoxDecoration(borderRadius: BorderRadius.circular(15)),
                   child: BaseWidget(),
                 ),
-                OutCountWidget(),
-                MarginWidget(),
+                Container(
+                  margin: EdgeInsets.fromLTRB(
+                      widthMargin, heightMargin, widthMargin, heightMargin),
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  child: Row(children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      width: MediaQuery.of(context).size.width * 0.35,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: OutCountWidget(),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.05,
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: MarginWidget(),
+                    )
+                  ]),
+                ),
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text(probsProvider.inning.toString()),
                   Text(probsProvider.games.toString()),

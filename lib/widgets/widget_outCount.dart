@@ -29,6 +29,9 @@ class _OutcountWidgetState extends State<OutCountWidget> {
   Widget build(BuildContext context) {
     final probsProvider = Provider.of<Probs>(context);
     late Probs newProb;
+    double outCountWidgetHeight = MediaQuery.of(context).size.height * 0.15;
+    double outCountWidgetWidth = MediaQuery.of(context).size.width * 0.35;
+
     return GestureDetector(
       onTap: () async {
         setState(() {
@@ -45,29 +48,56 @@ class _OutcountWidgetState extends State<OutCountWidget> {
         probsProvider.setResults(
             newProb.games, newProb.gamesWon, newProb.winExpectancy);
       },
-      child: Container(
-        width: 100,
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-        color: Colors.red[50],
-        child: Row(children: [
-          Container(
-            height: 20,
-            width: 20,
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-            decoration: BoxDecoration(
-                color: (outCount > 0) ? Colors.red : Colors.white,
-                shape: BoxShape.circle),
+      child: Column(children: [
+        SizedBox(
+          height: outCountWidgetHeight * 0.2,
+        ),
+        SizedBox(
+          height: outCountWidgetHeight * 0.2,
+          child: Text(
+            '아웃',
+            style: TextStyle(fontSize: 22),
           ),
-          Container(
-            height: 20,
-            width: 20,
-            padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-            decoration: BoxDecoration(
-                color: (outCount > 1) ? Colors.red : Colors.white,
-                shape: BoxShape.circle),
-          )
-        ]),
-      ),
+        ),
+        SizedBox(
+          height: outCountWidgetHeight * 0.1,
+        ),
+        SizedBox(
+          height: outCountWidgetHeight * 0.3,
+          child: Row(children: [
+            SizedBox(
+              width: outCountWidgetWidth * 0.15,
+            ),
+            Container(
+              width: outCountWidgetWidth * 0.325,
+              decoration: BoxDecoration(
+                  color: (outCount > 0) ? Colors.red : Colors.white,
+                  shape: BoxShape.circle,
+                  border: (outCount > 0)
+                      ? Border.all(color: Colors.red)
+                      : Border.all(color: Color(0xFFC2C2C2), width: 1)),
+            ),
+            SizedBox(
+              width: outCountWidgetWidth * 0.05,
+            ),
+            Container(
+              width: outCountWidgetWidth * 0.325,
+              decoration: BoxDecoration(
+                  color: (outCount > 1) ? Colors.red : Colors.white,
+                  shape: BoxShape.circle,
+                  border: (outCount > 1)
+                      ? Border.all(color: Colors.red)
+                      : Border.all(color: Color(0xFFC2C2C2), width: 1)),
+            ),
+            SizedBox(
+              width: outCountWidgetWidth * 0.15,
+            ),
+          ]),
+        ),
+        SizedBox(
+          height: outCountWidgetHeight * 0.2,
+        )
+      ]),
     );
   }
 }

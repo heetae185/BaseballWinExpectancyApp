@@ -58,7 +58,7 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
         const Text(
           '우리팀은',
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 22),
         ),
         SizedBox(
           height: toggleButtonSizedBoxHeight,
@@ -110,7 +110,7 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
                       child: Text(
                         '홈팀',
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 18,
                             fontFamily: 'SpoqaHanSansNeo',
                             fontWeight: FontWeight.w400),
                       ),
@@ -145,7 +145,7 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
                       child: Text(
                         '원정팀',
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 18,
                             fontFamily: 'SpoqaHanSansNeo',
                             fontWeight: FontWeight.w400),
                       ),

@@ -49,7 +49,7 @@ class _InningWidgetState extends State<InningWidget> {
           width: inningPickerWidth * 0.2,
           child: Text(
             '지금은',
-            style: TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 22),
           ),
         ),
         SizedBox(
@@ -61,7 +61,7 @@ class _InningWidgetState extends State<InningWidget> {
             itemHeight: 25,
             itemWidth: 50,
             selectedTextStyle: TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 fontFamily: 'SpoqaHanSansNeo',
                 fontWeight: FontWeight.w600,
                 color: Colors.black),
@@ -101,7 +101,7 @@ class _InningWidgetState extends State<InningWidget> {
           child: Text(
             '회',
             style: TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 fontFamily: 'SpoqaHanSansNeo',
                 fontWeight: FontWeight.w600),
           ),
@@ -115,7 +115,7 @@ class _InningWidgetState extends State<InningWidget> {
             itemHeight: 25,
             itemWidth: 50,
             selectedTextStyle: TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 fontFamily: 'SpoqaHanSansNeo',
                 fontWeight: FontWeight.w600,
                 color: Colors.black),
@@ -154,7 +154,7 @@ class _InningWidgetState extends State<InningWidget> {
           width: inningPickerWidth * 0.2,
           child: Text(
             '입니다',
-            style: TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 22),
           ),
         ),
         SizedBox(
