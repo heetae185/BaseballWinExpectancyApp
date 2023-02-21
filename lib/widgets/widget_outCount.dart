@@ -54,7 +54,7 @@ class _OutcountWidgetState extends State<OutCountWidget> {
         ),
         SizedBox(
           height: outCountWidgetHeight * 0.2,
-          child: Text(
+          child: const Text(
             '아웃',
             style: TextStyle(fontSize: 22),
           ),
