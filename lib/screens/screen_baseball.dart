@@ -68,15 +68,14 @@ class _BaseballScreenState extends State<BaseballScreen> {
     double heightMargin = screenHeight * 0.01;
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Baseball Win Expectancy'),
-        ),
         backgroundColor: const Color(0xFFF5F5F5),
         body: isLoading
             ? Center(
                 child: CircularProgressIndicator(),
               )
             : Column(children: [
+                Text(screenHeight.toString()),
+                Text(MediaQuery.of(context).padding.top.toString()),
                 Container(
                   margin:
                       EdgeInsets.fromLTRB(0, heightMargin * 2, 0, heightMargin),

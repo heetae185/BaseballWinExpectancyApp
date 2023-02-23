@@ -1,4 +1,5 @@
 import 'package:baseball_win_expectancy/providers/probs_sqlite.dart';
+import 'package:baseball_win_expectancy/screens/screen_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
               fontFamily: 'SpoqaHanSansNeo',
               appBarTheme: const AppBarTheme(
-                toolbarHeight: 50,
+                toolbarHeight: 40,
                 backgroundColor: Color(0xFF9CC06F),
                 systemOverlayStyle: SystemUiOverlayStyle(
                   // Status bar color
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
                 ),
               )),
           initialRoute: '/',
-          routes: {'/': (context) => BaseballScreen()},
+          routes: {'/': (context) => MainScreen()},
         );
       },
     );

@@ -81,7 +81,9 @@ class ResultWidget extends StatelessWidget {
                 alignment: Alignment.center,
                 height: resultWidgetHeight * 0.3,
                 child: Text(
-                  '${(probsProvider.gamesWon / probsProvider.games * 100).toStringAsFixed(1).split('.')[1] == '0' ? (probsProvider.gamesWon / probsProvider.games * 100).toStringAsFixed(0) : (probsProvider.gamesWon / probsProvider.games * 100).toStringAsFixed(1)}%',
+                  (probsProvider.games == 0)
+                      ? '0%'
+                      : '${(probsProvider.gamesWon / probsProvider.games * 100).toStringAsFixed(1).split('.')[1] == '0' ? (probsProvider.gamesWon / probsProvider.games * 100).toStringAsFixed(0) : (probsProvider.gamesWon / probsProvider.games * 100).toStringAsFixed(1)}%',
                   style: TextStyle(
                       fontSize: 28,
                       fontFamily: 'SpoqaHanSansNeo',
