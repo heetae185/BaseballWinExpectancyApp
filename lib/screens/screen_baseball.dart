@@ -61,11 +61,15 @@ class _BaseballScreenState extends State<BaseballScreen> {
     final probsProvider = Provider.of<Probs>(context);
     final base = Provider.of<Base>(context);
 
+    double screenHeight = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + 50);
     double widthMargin = MediaQuery.of(context).size.width * 0.05;
-    double heightMargin = MediaQuery.of(context).size.height * 0.01;
+    double heightMargin = screenHeight * 0.01;
 
     return Scaffold(
-        appBar: AppBar(title: Text('Baseball Win Expectancy')),
+        appBar: AppBar(
+          title: Text('Baseball Win Expectancy'),
+        ),
         backgroundColor: const Color(0xFFF5F5F5),
         body: isLoading
             ? Center(
@@ -79,7 +83,7 @@ class _BaseballScreenState extends State<BaseballScreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  height: MediaQuery.of(context).size.height * 0.1,
+                  height: screenHeight * 0.12,
                   child: HomeAwayWidget(),
                 ),
                 Container(
@@ -87,19 +91,20 @@ class _BaseballScreenState extends State<BaseballScreen> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15)),
-                  height: MediaQuery.of(context).size.height * 0.1,
+                  height: screenHeight * 0.1,
                   child: InningWidget(),
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, heightMargin, 0, heightMargin),
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  height: screenHeight * 0.28,
                   child: BaseWidget(),
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(
                       widthMargin, heightMargin, widthMargin, heightMargin),
-                  height: MediaQuery.of(context).size.height * 0.15,
+                  height: screenHeight * 0.17,
                   child: Row(children: [
                     Container(
                       alignment: Alignment.centerLeft,
@@ -122,12 +127,19 @@ class _BaseballScreenState extends State<BaseballScreen> {
                     )
                   ]),
                 ),
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text(probsProvider.inning.toString()),
-                  Text(probsProvider.games.toString()),
-                  Text(probsProvider.gamesWon.toString()),
-                  Text(probsProvider.winExpectancy.toString())
-                ]),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, heightMargin, 0, heightMargin),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15)),
+                  height: screenHeight * 0.14,
+                )
+                // Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                //   Text(probsProvider.inning.toString()),
+                //   Text(probsProvider.games.toString()),
+                //   Text(probsProvider.gamesWon.toString()),
+                //   Text(probsProvider.winExpectancy.toString())
+                // ]),
               ]));
   }
 }

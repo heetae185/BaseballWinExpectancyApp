@@ -1,5 +1,6 @@
 import 'package:baseball_win_expectancy/providers/probs_sqlite.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:baseball_win_expectancy/screens/screen_baseball.dart';
 import 'package:baseball_win_expectancy/models/base.dart';
@@ -33,7 +34,18 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Baseball Win Expectancy',
           theme: ThemeData(
-              primaryColor: Colors.green, fontFamily: 'SpoqaHanSansNeo'),
+              fontFamily: 'SpoqaHanSansNeo',
+              appBarTheme: const AppBarTheme(
+                toolbarHeight: 50,
+                backgroundColor: Color(0xFF9CC06F),
+                systemOverlayStyle: SystemUiOverlayStyle(
+                  // Status bar color
+                  statusBarColor: Color(0xFF9CC06F),
+                  // statusBarIconBrightness: Brightness.dark,
+                  statusBarBrightness:
+                      Brightness.light, // iOS에서 먹히는 설정(검정 글씨로 표시됨)
+                ),
+              )),
           initialRoute: '/',
           routes: {'/': (context) => BaseballScreen()},
         );

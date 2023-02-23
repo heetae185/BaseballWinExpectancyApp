@@ -28,7 +28,10 @@ class _MarginWidgetState extends State<MarginWidget> {
   Widget build(BuildContext context) {
     final probsProvider = Provider.of<Probs>(context);
     late Probs newProb;
-    double marginWidgetHeight = MediaQuery.of(context).size.height * 0.15;
+
+    double screenHeight = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + 50);
+    double marginWidgetHeight = screenHeight * 0.15;
     double marginWidgetWidth = MediaQuery.of(context).size.width * 0.5;
     double marginButtonWidth = MediaQuery.of(context).size.width * 0.5 * 0.8;
 
@@ -44,7 +47,7 @@ class _MarginWidgetState extends State<MarginWidget> {
         ),
       ),
       SizedBox(
-        height: marginWidgetHeight * 0.1,
+        height: marginWidgetHeight * 0.15,
       ),
       SizedBox(
         height: marginWidgetHeight * 0.35,
@@ -133,7 +136,7 @@ class _MarginWidgetState extends State<MarginWidget> {
         ]),
       ),
       SizedBox(
-        height: marginWidgetHeight * 0.15,
+        height: marginWidgetHeight * 0.1,
       )
     ]);
   }

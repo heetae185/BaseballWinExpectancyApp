@@ -29,7 +29,10 @@ class _OutcountWidgetState extends State<OutCountWidget> {
   Widget build(BuildContext context) {
     final probsProvider = Provider.of<Probs>(context);
     late Probs newProb;
-    double outCountWidgetHeight = MediaQuery.of(context).size.height * 0.15;
+
+    double screenHeight = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + 50);
+    double outCountWidgetHeight = screenHeight * 0.15;
     double outCountWidgetWidth = MediaQuery.of(context).size.width * 0.35;
 
     return GestureDetector(
@@ -60,7 +63,7 @@ class _OutcountWidgetState extends State<OutCountWidget> {
           ),
         ),
         SizedBox(
-          height: outCountWidgetHeight * 0.1,
+          height: outCountWidgetHeight * 0.15,
         ),
         SizedBox(
           height: outCountWidgetHeight * 0.3,
@@ -90,13 +93,13 @@ class _OutcountWidgetState extends State<OutCountWidget> {
                       : Border.all(color: Color(0xFFC2C2C2), width: 1)),
             ),
             SizedBox(
-              width: outCountWidgetWidth * 0.15,
+              width: outCountWidgetWidth * 0.1,
             ),
           ]),
         ),
         SizedBox(
-          height: outCountWidgetHeight * 0.2,
-        )
+          height: outCountWidgetHeight * 0.15,
+        ),
       ]),
     );
   }

@@ -35,12 +35,13 @@ class _BaseWidgetState extends State<BaseWidget> {
     final base = Provider.of<Base>(context);
     final probsProvider = Provider.of<Probs>(context);
     late Probs newProb;
-    double baseFrameHeight = MediaQuery.of(context).size.height * 0.25;
+    double screenHeight = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + 50);
+    double baseFrameHeight = screenHeight * 0.28;
     double baseWidgetMargin = MediaQuery.of(context).size.width * 0.05;
 
     return Container(
         margin: EdgeInsets.fromLTRB(baseWidgetMargin, 0, baseWidgetMargin, 0),
-        height: baseFrameHeight,
         decoration: BoxDecoration(
           color: const Color(0xFF9CC06F),
           borderRadius: BorderRadius.circular(15),
@@ -58,7 +59,7 @@ class _BaseWidgetState extends State<BaseWidget> {
                     Transform.rotate(
                       angle: -45 * math.pi / 180,
                       child: Container(
-                        width: baseFrameHeight * 0.275 * math.sqrt(2),
+                        width: baseFrameHeight * 0.25 * math.sqrt(2),
                         height: baseFrameHeight * 0.06,
                         decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
                       ),
@@ -66,7 +67,7 @@ class _BaseWidgetState extends State<BaseWidget> {
                     Transform.rotate(
                       angle: 45 * math.pi / 180,
                       child: Container(
-                        width: baseFrameHeight * 0.275 * math.sqrt(2),
+                        width: baseFrameHeight * 0.25 * math.sqrt(2),
                         height: baseFrameHeight * 0.06,
                         decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
                       ),
@@ -74,7 +75,7 @@ class _BaseWidgetState extends State<BaseWidget> {
                   ],
                 ),
                 SizedBox(
-                  height: baseFrameHeight * 0.3,
+                  height: baseFrameHeight * 0.31,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -82,7 +83,7 @@ class _BaseWidgetState extends State<BaseWidget> {
                     Transform.rotate(
                       angle: 45 * math.pi / 180,
                       child: Container(
-                        width: baseFrameHeight * 0.275 * math.sqrt(2),
+                        width: baseFrameHeight * 0.24 * math.sqrt(2),
                         height: baseFrameHeight * 0.06,
                         decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
                       ),
@@ -90,7 +91,7 @@ class _BaseWidgetState extends State<BaseWidget> {
                     Transform.rotate(
                       angle: -45 * math.pi / 180,
                       child: Container(
-                        width: baseFrameHeight * 0.275 * math.sqrt(2),
+                        width: baseFrameHeight * 0.24 * math.sqrt(2),
                         height: baseFrameHeight * 0.06,
                         decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
                       ),
