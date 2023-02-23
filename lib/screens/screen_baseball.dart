@@ -4,6 +4,7 @@ import 'package:baseball_win_expectancy/widgets/widget_homeAway.dart';
 import 'package:baseball_win_expectancy/widgets/widget_inning.dart';
 import 'package:baseball_win_expectancy/widgets/widget_margin.dart';
 import 'package:baseball_win_expectancy/widgets/widget_outCount.dart';
+import 'package:baseball_win_expectancy/widgets/widget_result.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:baseball_win_expectancy/models/probs.dart';
@@ -133,7 +134,8 @@ class _BaseballScreenState extends State<BaseballScreen> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15)),
                   height: screenHeight * 0.14,
-                )
+                  child: ResultWidget(),
+                ),
                 // Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                 //   Text(probsProvider.inning.toString()),
                 //   Text(probsProvider.games.toString()),
