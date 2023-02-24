@@ -38,7 +38,7 @@ class _MainScreenState extends State<MainScreen>
                 controller: _tabController,
                 // indicatorColor: Color(0xFF9CC06F),
                 indicatorColor: Colors.green,
-                // indicatorSize: TabBarIndicatorSize.label,
+                indicatorSize: TabBarIndicatorSize.label,
                 tabs: [
                   SizedBox(
                     height: 45,
@@ -56,7 +56,7 @@ class _MainScreenState extends State<MainScreen>
                     height: 45,
                     child: Tab(
                       child: Align(
-                        alignment: Alignment(-0.3, 0.5),
+                        alignment: Alignment(-0.1, 0.5),
                         child: Text(
                           '자세히 보기',
                           style: TextStyle(fontSize: 20),
