@@ -35,282 +35,293 @@ class _BaseWidgetState extends State<BaseWidget> {
     final base = Provider.of<Base>(context);
     final probsProvider = Provider.of<Probs>(context);
     late Probs newProb;
-    double screenHeight = MediaQuery.of(context).size.height -
-        (MediaQuery.of(context).padding.top + 50);
-    double baseFrameHeight = screenHeight * 0.28;
     double baseWidgetMargin = MediaQuery.of(context).size.width * 0.05;
 
-    return Container(
-        margin: EdgeInsets.fromLTRB(baseWidgetMargin, 0, baseWidgetMargin, 0),
-        decoration: BoxDecoration(
-          color: const Color(0xFF9CC06F),
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: baseFrameHeight * 0.4,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Transform.rotate(
-                      angle: -45 * math.pi / 180,
-                      child: Container(
-                        width: baseFrameHeight * 0.25 * math.sqrt(2),
-                        height: baseFrameHeight * 0.06,
-                        decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      final double baseFrameHeight = constraints.maxHeight;
+
+      return Container(
+          margin: EdgeInsets.fromLTRB(baseWidgetMargin, 0, baseWidgetMargin, 0),
+          decoration: BoxDecoration(
+            color: const Color(0xFF9CC06F),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  SizedBox(
+                    height: baseFrameHeight * 0.4,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Transform.rotate(
+                        angle: -45 * math.pi / 180,
+                        child: Container(
+                          width: baseFrameHeight * 0.25 * math.sqrt(2),
+                          height: baseFrameHeight * 0.06,
+                          decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
+                        ),
                       ),
-                    ),
-                    Transform.rotate(
-                      angle: 45 * math.pi / 180,
-                      child: Container(
-                        width: baseFrameHeight * 0.25 * math.sqrt(2),
-                        height: baseFrameHeight * 0.06,
-                        decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: baseFrameHeight * 0.31,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Transform.rotate(
-                      angle: 45 * math.pi / 180,
-                      child: Container(
-                        width: baseFrameHeight * 0.24 * math.sqrt(2),
-                        height: baseFrameHeight * 0.06,
-                        decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
-                      ),
-                    ),
-                    Transform.rotate(
-                      angle: -45 * math.pi / 180,
-                      child: Container(
-                        width: baseFrameHeight * 0.24 * math.sqrt(2),
-                        height: baseFrameHeight * 0.06,
-                        decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              child: RightTriangleShape(
-                  width: baseFrameHeight * 0.1 * math.sqrt(2),
-                  height: baseFrameHeight * 0.1 * math.sqrt(2),
-                  color: Colors.white),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: baseFrameHeight * 0.15,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Transform.rotate(
+                      Transform.rotate(
                         angle: 45 * math.pi / 180,
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: baseFrameHeight * 0.2,
-                              height: baseFrameHeight * 0.2,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(3),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.7),
-                                      blurRadius: 3.0,
-                                      spreadRadius: 0.0,
-                                      offset: const Offset(0, 3),
-                                    )
-                                  ]),
-                            ),
-                            Container(
-                              margin: EdgeInsets.all(baseFrameHeight * 0.02),
-                              width: baseFrameHeight * 0.16,
-                              height: baseFrameHeight * 0.16,
-                              child: TextButton(
-                                onPressed: () async {
-                                  setState(() {
-                                    secondBase = !secondBase;
-                                  });
-                                  base.switchSecondBase();
-                                  probsProvider
-                                      .changeSituation(base.toSituationCode());
-                                  newProb = await getProb(
-                                      probsProvider.homeAway,
-                                      probsProvider.topBottom,
-                                      probsProvider.inning,
-                                      probsProvider.outCount,
-                                      probsProvider.situation,
-                                      probsProvider.margin);
-                                  probsProvider.setResults(newProb.games,
-                                      newProb.gamesWon, newProb.winExpectancy);
-                                },
-                                style: secondBase
-                                    ? ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                const Color(0xFF9CC06F)),
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(3))))
-                                    : ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.white)),
-                                child: const Text(''),
-                              ),
-                            )
-                          ],
-                        ))
-                  ],
-                ),
-                SizedBox(
-                  height: baseFrameHeight * (0.55 * 0.5 - 0.1),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Transform.rotate(
+                        child: Container(
+                          width: baseFrameHeight * 0.25 * math.sqrt(2),
+                          height: baseFrameHeight * 0.06,
+                          decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: baseFrameHeight * 0.31,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Transform.rotate(
                         angle: 45 * math.pi / 180,
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: baseFrameHeight * 0.2,
-                              height: baseFrameHeight * 0.2,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(3),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.7),
-                                      blurRadius: 3.0,
-                                      spreadRadius: 0.0,
-                                      offset: const Offset(0, 3),
-                                    )
-                                  ]),
-                            ),
-                            Container(
-                              margin: EdgeInsets.all(baseFrameHeight * 0.02),
-                              width: baseFrameHeight * 0.16,
-                              height: baseFrameHeight * 0.16,
-                              child: TextButton(
-                                onPressed: () async {
-                                  setState(() {
-                                    thirdBase = !thirdBase;
-                                  });
-                                  base.switchThirdBase();
-                                  probsProvider
-                                      .changeSituation(base.toSituationCode());
-                                  newProb = await getProb(
-                                      probsProvider.homeAway,
-                                      probsProvider.topBottom,
-                                      probsProvider.inning,
-                                      probsProvider.outCount,
-                                      probsProvider.situation,
-                                      probsProvider.margin);
-                                  probsProvider.setResults(newProb.games,
-                                      newProb.gamesWon, newProb.winExpectancy);
-                                },
-                                style: thirdBase
-                                    ? ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                const Color(0xFF9CC06F)),
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(3))))
-                                    : ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.white)),
-                                child: const Text(''),
+                        child: Container(
+                          width: baseFrameHeight * 0.24 * math.sqrt(2),
+                          height: baseFrameHeight * 0.06,
+                          decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
+                        ),
+                      ),
+                      Transform.rotate(
+                        angle: -45 * math.pi / 180,
+                        child: Container(
+                          width: baseFrameHeight * 0.24 * math.sqrt(2),
+                          height: baseFrameHeight * 0.06,
+                          decoration: BoxDecoration(color: Color(0xFFFFCD8E)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: RightTriangleShape(
+                    width: baseFrameHeight * 0.1 * math.sqrt(2),
+                    height: baseFrameHeight * 0.1 * math.sqrt(2),
+                    color: Colors.white),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: baseFrameHeight * 0.15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Transform.rotate(
+                          angle: 45 * math.pi / 180,
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: baseFrameHeight * 0.2,
+                                height: baseFrameHeight * 0.2,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(3),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.7),
+                                        blurRadius: 3.0,
+                                        spreadRadius: 0.0,
+                                        offset: const Offset(0, 3),
+                                      )
+                                    ]),
                               ),
-                            )
-                          ],
-                        )),
-                    SizedBox(width: baseFrameHeight * 0.55),
-                    Transform.rotate(
-                        angle: 45 * math.pi / 180,
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: baseFrameHeight * 0.2,
-                              height: baseFrameHeight * 0.2,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(3),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.7),
-                                      blurRadius: 3.0,
-                                      spreadRadius: 0.0,
-                                      offset: const Offset(0, 3),
-                                    )
-                                  ]),
-                            ),
-                            Container(
-                              margin: EdgeInsets.all(baseFrameHeight * 0.02),
-                              width: baseFrameHeight * 0.16,
-                              height: baseFrameHeight * 0.16,
-                              child: TextButton(
-                                onPressed: () async {
-                                  setState(() {
-                                    firstBase = !firstBase;
-                                  });
-                                  base.switchFirstBase();
-                                  probsProvider
-                                      .changeSituation(base.toSituationCode());
-                                  newProb = await getProb(
-                                      probsProvider.homeAway,
-                                      probsProvider.topBottom,
-                                      probsProvider.inning,
-                                      probsProvider.outCount,
-                                      probsProvider.situation,
-                                      probsProvider.margin);
-                                  probsProvider.setResults(newProb.games,
-                                      newProb.gamesWon, newProb.winExpectancy);
-                                },
-                                style: firstBase
-                                    ? ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                const Color(0xFF9CC06F)),
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(3))))
-                                    : ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.white)),
-                                child: const Text(''),
+                              Container(
+                                margin: EdgeInsets.all(baseFrameHeight * 0.02),
+                                width: baseFrameHeight * 0.16,
+                                height: baseFrameHeight * 0.16,
+                                child: TextButton(
+                                  onPressed: () async {
+                                    setState(() {
+                                      secondBase = !secondBase;
+                                    });
+                                    base.switchSecondBase();
+                                    probsProvider.changeSituation(
+                                        base.toSituationCode());
+                                    newProb = await getProb(
+                                        probsProvider.homeAway,
+                                        probsProvider.topBottom,
+                                        probsProvider.inning,
+                                        probsProvider.outCount,
+                                        probsProvider.situation,
+                                        probsProvider.margin);
+                                    probsProvider.setResults(
+                                        newProb.games,
+                                        newProb.gamesWon,
+                                        newProb.winExpectancy);
+                                  },
+                                  style: secondBase
+                                      ? ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  const Color(0xFF9CC06F)),
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          3))))
+                                      : ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  Colors.white)),
+                                  child: const Text(''),
+                                ),
+                              )
+                            ],
+                          ))
+                    ],
+                  ),
+                  SizedBox(
+                    height: baseFrameHeight * (0.55 * 0.5 - 0.1),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Transform.rotate(
+                          angle: 45 * math.pi / 180,
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: baseFrameHeight * 0.2,
+                                height: baseFrameHeight * 0.2,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(3),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.7),
+                                        blurRadius: 3.0,
+                                        spreadRadius: 0.0,
+                                        offset: const Offset(0, 3),
+                                      )
+                                    ]),
                               ),
-                            )
-                          ],
-                        )),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ));
+                              Container(
+                                margin: EdgeInsets.all(baseFrameHeight * 0.02),
+                                width: baseFrameHeight * 0.16,
+                                height: baseFrameHeight * 0.16,
+                                child: TextButton(
+                                  onPressed: () async {
+                                    setState(() {
+                                      thirdBase = !thirdBase;
+                                    });
+                                    base.switchThirdBase();
+                                    probsProvider.changeSituation(
+                                        base.toSituationCode());
+                                    newProb = await getProb(
+                                        probsProvider.homeAway,
+                                        probsProvider.topBottom,
+                                        probsProvider.inning,
+                                        probsProvider.outCount,
+                                        probsProvider.situation,
+                                        probsProvider.margin);
+                                    probsProvider.setResults(
+                                        newProb.games,
+                                        newProb.gamesWon,
+                                        newProb.winExpectancy);
+                                  },
+                                  style: thirdBase
+                                      ? ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  const Color(0xFF9CC06F)),
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          3))))
+                                      : ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  Colors.white)),
+                                  child: const Text(''),
+                                ),
+                              )
+                            ],
+                          )),
+                      SizedBox(width: baseFrameHeight * 0.55),
+                      Transform.rotate(
+                          angle: 45 * math.pi / 180,
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: baseFrameHeight * 0.2,
+                                height: baseFrameHeight * 0.2,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(3),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.7),
+                                        blurRadius: 3.0,
+                                        spreadRadius: 0.0,
+                                        offset: const Offset(0, 3),
+                                      )
+                                    ]),
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(baseFrameHeight * 0.02),
+                                width: baseFrameHeight * 0.16,
+                                height: baseFrameHeight * 0.16,
+                                child: TextButton(
+                                  onPressed: () async {
+                                    setState(() {
+                                      firstBase = !firstBase;
+                                    });
+                                    base.switchFirstBase();
+                                    probsProvider.changeSituation(
+                                        base.toSituationCode());
+                                    newProb = await getProb(
+                                        probsProvider.homeAway,
+                                        probsProvider.topBottom,
+                                        probsProvider.inning,
+                                        probsProvider.outCount,
+                                        probsProvider.situation,
+                                        probsProvider.margin);
+                                    probsProvider.setResults(
+                                        newProb.games,
+                                        newProb.gamesWon,
+                                        newProb.winExpectancy);
+                                  },
+                                  style: firstBase
+                                      ? ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  const Color(0xFF9CC06F)),
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          3))))
+                                      : ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  Colors.white)),
+                                  child: const Text(''),
+                                ),
+                              )
+                            ],
+                          )),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ));
+    });
   }
 }
 

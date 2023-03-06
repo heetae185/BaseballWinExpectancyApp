@@ -8,7 +8,7 @@ class HomeAwayWidget extends StatefulWidget {
   _HomeAwayWidgetState createState() => _HomeAwayWidgetState();
 }
 
-double xAlign = -0.9;
+double xAlign = -0.95;
 const double homeAlign = -0.95;
 const double awayAlign = 0.95;
 const Color selectedColor = Color(0xFF9CC06F);
@@ -45,8 +45,6 @@ class _HomeAwayWidgetState extends State<HomeAwayWidget> {
     double toggleButtonWidth = MediaQuery.of(context).size.width * 0.8;
     double toggleButtonHeight = MediaQuery.of(context).size.height * 0.042;
     double toggleButtonMarginWidth = MediaQuery.of(context).size.width * 0.05;
-    double toggleButtonMarginHeight =
-        MediaQuery.of(context).size.height * 0.008;
     double toggleButtonSizedBoxHeight =
         MediaQuery.of(context).size.height * 0.005;
 
